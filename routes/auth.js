@@ -4,6 +4,10 @@ const router = express.Router();
 const {signout, signup, signin, isSignedin} = require("../controller/auth");
 
 
+//Read routes
+router.get("/signout", signout);
+
+//Post routes
 router.post("/signup",[
     // ...some other validations...
   check("username").isLength({min:3}).withMessage("name should be atleast 3 characters"),
@@ -19,9 +23,6 @@ router.post("/signup",[
   ], signin);
 
 
-
-
-router.get("/signout", signout);
 
 
 

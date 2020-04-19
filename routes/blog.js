@@ -9,7 +9,7 @@ const {getBlogById, getBlog, getBlogs, removeBlog, createBlog, updateBlog, incre
 const {isAuthenticated, isSignedin} = require('../controller/auth');
 const {getUserById} = require('../controller/user');
 
-
+//MiddleWares
 router.param("userId", getUserById);
 router.param("blogId", getBlogById);
 
@@ -28,7 +28,7 @@ router.post("/create/:userId",[
   ],isSignedin, isAuthenticated, createBlog);
 
 
-
+  //Update routes
   router.put("/blog/:blogId/:userId",isSignedin, isAuthenticated, updateBlog);
   router.put("/blog/:blogId/:userId/like",isSignedin, isAuthenticated, incrementBlogLikeCount);
 

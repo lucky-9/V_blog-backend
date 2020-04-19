@@ -85,7 +85,19 @@ exports.updateBlog = (req, res) =>{
 
 exports.incrementBlogLikeCount = (req, res) =>{
     let blog= req.blog;
+    let user = req.profile;
+    let userLikedBlogs = user.likedBlogs;
+    console.log("before pushing ", userLikedBlogs);
+    let blogIsLiked = userLikedBlogs.includes(blog._id);
+    if(blogIsLiked){
+      return  res.send("Blog is alreaady liked");
+    }
+
+    console.log(user);
     blog.likes = blog.likes+1;
+    user.likedBlogs.push(blog._id);
+    user.save();
+    console.log("after pushing ", userLikedBlogs);
     blog.save((err, blog) =>{
         if(err){
             return res.status(400).json({
