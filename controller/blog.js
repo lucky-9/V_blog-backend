@@ -50,7 +50,7 @@ exports.getBlogById = (req, res, next, id) => {
 
 
 exports.getBlogs = (req, res) =>{
-  let limit = req.query.limit?parseInt(req.query.limit):10
+  let limit = req.query.limit?parseInt(req.query.limit):100
   let sortBy = req.query.sortBy?req.query.sortBy:"_id";
   Blog.find()
    .limit(limit)
